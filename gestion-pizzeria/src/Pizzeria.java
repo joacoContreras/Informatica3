@@ -13,6 +13,10 @@ public class Pizzeria {
         pedidos = new ArrayList<>();
     }
 
+    // Método para obtener la lista de pedidos
+    public ArrayList<Pedido> getPedidos() {
+        return pedidos;
+    }
     public void generarPedidos() {
 
         // Lista de nombres y apellidos de ejemplo

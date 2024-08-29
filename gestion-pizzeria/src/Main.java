@@ -62,7 +62,24 @@ public class Main {
                 default:
                     break;
             }
-        } else if(opcion == 4)
+        } else if(opcion == 2) {
+            System.out.println("1- Ordenar Lista por Tiempo de Preparacion");
+            System.out.println("2- Ordenar Lista por Monto");
+            System.out.println("3- Ordenar Lista por Nombre de cliente");
+            int opcion2 = consola.nextInt();
+            consola.nextLine();
+            switch (opcion2) {
+                case 1:
+                    Ordenador.ordenarPorTiempoPreparacion(pizzeria.getPedidos());
+                    System.out.println("Lista de Pedidos ordenada:");
+                    pizzeria.imprimirPedidos();
+                    break;
+            
+                default:
+                    break;
+            }
+        } 
+        else if(opcion == 4)
             sistemaActivo = false;
 
         } while (sistemaActivo == true);
