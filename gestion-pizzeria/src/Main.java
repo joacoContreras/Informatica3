@@ -66,19 +66,34 @@ public class Main {
             System.out.println("1- Ordenar Lista por Tiempo de Preparacion");
             System.out.println("2- Ordenar Lista por Monto");
             System.out.println("3- Ordenar Lista por Nombre de cliente");
+            System.out.println("Tu opcion:");
             int opcion2 = consola.nextInt();
             consola.nextLine();
             switch (opcion2) {
                 case 1:
                     Ordenador.ordenarPorTiempoPreparacion(pizzeria.getPedidos());
-                    System.out.println("Lista de Pedidos ordenada:");
+                    System.out.println("Lista de Pedidos ordenada por Tiempo de Preparacion:");
+                    pizzeria.imprimirPedidos();
+                    break;
+
+                case 2:
+                    Ordenador.shellsort(pizzeria.getPedidos());
+                    System.out.println("Lista de Pedidos ordenada por Monto:");
+                    pizzeria.imprimirPedidos();
+                    break;
+                
+                case 3:
+                    Ordenador.quicksortPorNombre(pizzeria.getPedidos(),  0, pizzeria.getPedidos().size() - 1);
+                    System.out.println("Lista de Pedidos ordenada por Nombre de Cliente:");
                     pizzeria.imprimirPedidos();
                     break;
             
                 default:
                     break;
             }
-        } 
+        } else if(opcion == 3) {
+
+        }
         else if(opcion == 4)
             sistemaActivo = false;
 

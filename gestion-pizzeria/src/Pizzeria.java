@@ -22,9 +22,9 @@ public class Pizzeria {
         // Lista de nombres y apellidos de ejemplo
         String[] nombres = {"Juan ", "Carlos ", "Pepe ", "Esteban ", "Lucas "};
         String[] apellidos = {"Gutierrez", "Ramirez", "Gonzalez", "Puch", "Lilias"};
-        for (int i = 0; i < nombres.length; i++) {
-            String nombreAleatorio = nombres[i];
-            String apellidoAleatorio = apellidos[i];
+        for (int i = 0; i < 100; i++) {
+            String nombreAleatorio =nombres[rand.nextInt(nombres.length)];
+            String apellidoAleatorio = apellidos[rand.nextInt(apellidos.length)];
             double costoAleatorio = 10 + (1990) * rand.nextDouble(); // Genera costo entre 10 y 2000
             float prepTiempoAleatorio = 15 + (45) * rand.nextFloat(); // Genera tiempo de preparación entre 15 y 60 minutos
             int idAleatorio = rand.nextInt(900000) + 100000; // Genera un ID aleatorio de 6 dígitos
