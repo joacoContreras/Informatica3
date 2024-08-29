@@ -15,6 +15,34 @@ class Pedido {
         this.prepTiempo = prepTiempo;
         this.id = id;
     }
+    // Métodos getter y setter
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public double getCosto() {
+        return costo;
+    }
+
+    public void setCosto(double costo) {
+        this.costo = costo;
+    }
+
+    public float getPrepTiempo() {
+        return prepTiempo;
+    }
+
+    public void setPrepTiempo(float prepTiempo) {
+        this.prepTiempo = prepTiempo;
+    }
+
+    public int getId() {
+        return id;
+    }
 
     @Override
     public String toString() {

@@ -1,9 +1,13 @@
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
+import java.util.Iterator;
+
 public class Pizzeria {
     // Generador de números aleatorios
     Random rand = new Random();
     private ArrayList<Pedido> pedidos;
+    Scanner consola = new Scanner(System.in);
 
     public Pizzeria() {
         pedidos = new ArrayList<>();
@@ -28,5 +32,62 @@ public class Pizzeria {
         for (Pedido pedido : pedidos) {
             System.out.println(pedido);
         }
+    }
+
+    public void agregarPedido() {
+        System.out.println("Ingresar nombre completo de Cliente:");
+        String cliente = consola.nextLine();
+        System.out.println("Ingrese monto total del pedido:");
+        double costo = consola.nextDouble();
+        consola.nextLine();
+        System.out.println("Ingrese el tiempo de preparacion:");
+        float tiempo = consola.nextFloat();
+        consola.nextLine();
+        int id = rand.nextInt(900000) + 100000 + 1;
+        pedidos.add(new Pedido(cliente, costo, tiempo, id));
+        System.out.println("Pedido agregado existosamnete");
+    }
+
+    public boolean editarPedido(int id, String nuevoNombre, double nuevoCosto, float nuevoPrepTiempo) {
+        Pedido pedido = buscarPedido(id);  // Busca el pedido por ID
+        if (pedido != null) {
+            // Actualiza los valores del pedido
+            pedido.setNombre(nuevoNombre);
+            pedido.setCosto(nuevoCosto);
+            pedido.setPrepTiempo(nuevoPrepTiempo);
+            System.out.println("Pedido editado exitosamente");
+            return true;  // Edición exitosa
+        }
+        System.out.println("Pedido no encontrado");
+        return false;  // Pedido no encontrado
+    }
+
+      // Método para eliminar un pedido por ID
+        public boolean eliminarPedido(int id) {
+        Iterator<Pedido> iterador = pedidos.iterator();
+        while (iterador.hasNext()) {
+            Pedido pedido = iterador.next();
+            if (pedido.getId() == id) {
+                iterador.remove();
+                return true;
+            }
+        }
+        return false;
+    }
+
+     // Método para buscar un pedido por ID
+        public Pedido buscarPedido(int id) {
+        for (Pedido pedido : pedidos) {
+            if (pedido.getId() == id) {
+                return pedido;
+            }
+        }
+        System.out.println("Pedido no encontrado");
+        return null; // Si no se encuentra el pedido, devolver null
+    }
+
+    // Método para contar el número total de pedidos
+    public int contarPedidos() {
+        return pedidos.size();
     }
 }
