@@ -92,7 +92,14 @@ public class Main {
                     break;
             }
         } else if(opcion == 3) {
+            // Tamaños de las listas
+            int[] tamanos = {100, 1000, 10000};
 
+            // Crear una instancia de MedidorTiempos
+            TiempoOrdenamiento medidor = new TiempoOrdenamiento();
+            int highest = pizzeria.getPedidos().size() - 1;
+            // Medir y mostrar los tiempos de ordenamiento
+            TiempoOrdenamiento.medirTiemposOrdenamiento(tamanos, pizzeria.getPedidos(),highest);
         }
         else if(opcion == 4)
             sistemaActivo = false;
