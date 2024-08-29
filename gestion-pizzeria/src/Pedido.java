@@ -1,22 +1,30 @@
-public class Pedido{
-    private String nombreCliente;
-    private double costo;
-    private float prepTemp;
-    private int idPedido;
+import java.text.DecimalFormat;
 
-    public Pedido(String nombreCliente, double costo, float prepTemp, int idPedido){
-        this.nombreCliente = nombreCliente;
+class Pedido {
+    private String nombre;
+    private double costo;
+    private float prepTiempo;
+    private int id;
+
+    // Formato para mostrar solo dos decimales
+    private static final DecimalFormat df = new DecimalFormat("#.00");
+
+    public Pedido(String nombre, double costo, float prepTiempo, int id) {
+        this.nombre = nombre;
         this.costo = costo;
-        this.prepTemp = prepTemp;
-        this.idPedido = idPedido;
+        this.prepTiempo = prepTiempo;
+        this.id = id;
     }
 
     @Override
-    public String toString(){
-        return "Pedido{" + 
-                "nombreCliente" + nombreCliente + 
-                ", monto = " + costo + 
-                ", Tiempo de Preparacion = " + prepTemp + 
-                ", idPedido" + idPedido;
+    public String toString() {
+        return "Pedido {" +
+                "nombre= " + nombre + '\'' +
+                ", costo = " + df.format(costo) + "$" +
+                ", tiempo de preparación = " + df.format(prepTiempo) +
+                " minutos, ID= " + id +
+                '}';
     }
+
+    
 }
