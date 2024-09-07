@@ -1,8 +1,8 @@
-import java.util.ArrayList;
+import java.util.List;
 public class TiempoOrdenamiento {
     
     // Método para medir y mostrar los tiempos de ejecución de los algoritmos de ordenamiento
-    public static void medirTiemposOrdenamiento(int[] tamanos, ArrayList<Pedido> pedidos, int high) {
+    public static void medirTiemposOrdenamiento(int[] tamanos, List<Pedido> pedidos, int high) {
             
             // Medir tiempo de ordenamiento por nombre
             long tiempoInicio = System.nanoTime();

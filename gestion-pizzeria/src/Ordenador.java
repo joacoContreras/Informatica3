@@ -1,7 +1,7 @@
-import java.util.ArrayList;
+import java.util.List;
 public class Ordenador {
 
-    public static void ordenarPorTiempoPreparacion(ArrayList<Pedido> pedidos) {
+    public static void ordenarPorTiempoPreparacion(List<Pedido> pedidos) {
         for (int i = 1; i < pedidos.size(); i++) {
             Pedido key = pedidos.get(i);
             int j = i - 1;
@@ -13,7 +13,7 @@ public class Ordenador {
         }
     }
 
-    public static void shellsort(ArrayList<Pedido> pedidos) {
+    public static void shellsort(List<Pedido> pedidos) {
         int n = pedidos.size();
         for (int gap = n / 2; gap > 0; gap /= 2) {
             for (int i = gap; i < n; i++) {
@@ -27,14 +27,14 @@ public class Ordenador {
         }
     }
     
-    public static void quicksortPorNombre(ArrayList<Pedido> pedidos, int low, int high) {
+    public static void quicksortPorNombre(List<Pedido> pedidos, int low, int high) {
         if (low < high) {
             int pi = partition(pedidos, low, high);
             quicksortPorNombre(pedidos, low, pi - 1);
             quicksortPorNombre(pedidos, pi + 1, high);
         }
     }
-    private static int partition(ArrayList<Pedido> pedidos, int low, int high) {
+    private static int partition(List<Pedido> pedidos, int low, int high) {
         Pedido pivot = pedidos.get(high);
         int i = (low - 1);
         for (int j = low; j < high; j++) {
