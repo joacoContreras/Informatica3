@@ -1,97 +1,153 @@
-import java.util.ArrayList;
-import java.util.Random;
+
 import java.util.Scanner;
-import java.util.Iterator;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 public class Pizzeria {
-    // Generador de números aleatorios
-    Random rand = new Random();
-    private ArrayList<Pedido> pedidos;
+    private PedidosPreparados pedidosPreparados;
+    private final Pedido[] colaPedidos; // Arreglo para almacenar la cola de pedidos
+    private int capacidadMaxima=100;        // Capacidad máxima de la cola
+    private int frente;                 // Índice del primer pedido (frente de la cola)
+    private int finalCola;              // Índice del último pedido
+    private int size;                   // Número actual de pedidos en la cola
     Scanner consola = new Scanner(System.in);
+    Random rand = new Random();
 
-    public Pizzeria() {
-        pedidos = new ArrayList<>();
+    public Pizzeria(int capacidadMaxima) {
+        this.capacidadMaxima = capacidadMaxima;
+        this.colaPedidos = new Pedido[capacidadMaxima];
+        this.pedidosPreparados = new PedidosPreparados(capacidadMaxima);
+        this.frente = 0;
+        this.finalCola = -1;
+        this.size = 0;
     }
 
-    // Método para obtener la lista de pedidos
-    public ArrayList<Pedido> getPedidos() {
-        return pedidos;
+
+    // Manejo de la Pila
+    public void prepararPedido() {
+        Pedido pedido = dequeue();
+        if (pedido != null) {
+            pedidosPreparados.push(pedido);
+        }
     }
+
+    public void verPedidoPreparado() {
+        Pedido pedido = pedidosPreparados.peek();
+        if (pedido != null) {
+            System.out.println("Pedido procesado y entregado: " + pedido);
+        }
+    }
+
+    public void procesarPedidoPreparado() {
+        Pedido pedido = pedidosPreparados.pop();
+        if (pedido != null) {
+            System.out.println("Pedido procesado y entregado" + pedido);
+        }
+    }
+
+
+    // Manejo de la Cola
+    private int increment(int x){
+        if(++x==100){
+            x=0;
+        }
+        return x;
+    }
+    // Método para verificar si la cola está vacía
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    // Método para verificar si la cola ha alcanzado su capacidad máxima
+    public boolean isFull() {
+        return size == capacidadMaxima;
+    }
+
+    // Método para agregar un pedido a la cola (enqueue)
+    public boolean enqueue(Pedido pedido) {
+        if (isFull()) {
+            System.out.println("La cola de preparación está llena.");
+            return false;
+        }
+        finalCola = increment(finalCola);
+        colaPedidos[finalCola] = pedido;
+        size++;
+        return true;
+    }
+
+    // Método para remover el pedido al frente de la cola (dequeue)
+    public Pedido dequeue() {
+        if (isEmpty()) {
+            System.out.println("No hay pedidos en la cola.");
+            size--;
+        }
+        Pedido pedidoRemovido = colaPedidos[frente];
+        frente = increment(frente);  
+        return pedidoRemovido;
+    }
+
+    // Método para ver el pedido al frente de la cola sin removerlo (top)
+    public Pedido top() {
+        if (isEmpty()) {
+            System.out.println("No hay pedidos en la cola.");
+            return null;
+        }
+        return colaPedidos[frente];
+    }
+
+    // Método para generar pedidos aleatorios
     public void generarPedidos() {
-
-        // Lista de nombres y apellidos de ejemplo
         String[] nombres = {"Juan ", "Carlos ", "Pepe ", "Esteban ", "Lucas "};
         String[] apellidos = {"Gutierrez", "Ramirez", "Gonzalez", "Puch", "Lilias"};
-        for (int i = 0; i < 100; i++) {
-            String nombreAleatorio =nombres[rand.nextInt(nombres.length)];
+        for (int i = 0; i < capacidadMaxima-50; i++) {
+            String nombreAleatorio = nombres[rand.nextInt(nombres.length)];
             String apellidoAleatorio = apellidos[rand.nextInt(apellidos.length)];
-            double costoAleatorio = 10 + (1990) * rand.nextDouble(); // Genera costo entre 10 y 2000
-            float prepTiempoAleatorio = 15 + (45) * rand.nextFloat(); // Genera tiempo de preparación entre 15 y 60 minutos
-            int idAleatorio = rand.nextInt(900000) + 100000; // Genera un ID aleatorio de 6 dígitos
-            pedidos.add(new Pedido(nombreAleatorio + apellidoAleatorio, costoAleatorio, prepTiempoAleatorio, idAleatorio));
+            double costoAleatorio = 10 + (1990) * rand.nextDouble();
+            float prepTiempoAleatorio = 15 + (45) * rand.nextFloat();
+            int idAleatorio = rand.nextInt(900000) + 100000;
+            Pedido nuevoPedido = new Pedido(nombreAleatorio + apellidoAleatorio, costoAleatorio, prepTiempoAleatorio, idAleatorio);
+            enqueue(nuevoPedido);
         }
     }
 
+    // Método para imprimir todos los pedidos de la cola
     public void imprimirPedidos() {
-        for (Pedido pedido : pedidos) {
-            System.out.println(pedido);
+        if (isEmpty()) {
+            System.out.println("No hay pedidos en la cola.");
+            return;
+        }
+        int indiceActual = frente;
+        for (int i = 0; i < size; i++) {
+            System.out.println(colaPedidos[indiceActual]);
+            indiceActual = (indiceActual + 1) % capacidadMaxima;  // Avanza de manera circular
         }
     }
 
+    // Método para agregar un pedido manualmente
     public void agregarPedido() {
+        if (isFull()) {
+            System.out.println("La cola de preparación está llena.");
+            return;
+        }
         System.out.println("Ingresar nombre completo de Cliente:");
         String cliente = consola.nextLine();
         System.out.println("Ingrese monto total del pedido:");
         double costo = consola.nextDouble();
         consola.nextLine();
-        System.out.println("Ingrese el tiempo de preparacion:");
+        System.out.println("Ingrese el tiempo de preparación:");
         float tiempo = consola.nextFloat();
         consola.nextLine();
         int id = rand.nextInt(900000) + 100000 + 1;
-        pedidos.add(new Pedido(cliente, costo, tiempo, id));
-        System.out.println("Pedido agregado existosamnete");
+        Pedido nuevoPedido = new Pedido(cliente, costo, tiempo, id);
+        enqueue(nuevoPedido);
     }
 
-    public boolean editarPedido(int id, String nuevoNombre, double nuevoCosto, float nuevoPrepTiempo) {
-        Pedido pedido = buscarPedido(id);  // Busca el pedido por ID
-        if (pedido != null) {
-            // Actualiza los valores del pedido
-            pedido.setNombre(nuevoNombre);
-            pedido.setCosto(nuevoCosto);
-            pedido.setPrepTiempo(nuevoPrepTiempo);
-            System.out.println("Pedido editado exitosamente");
-            return true;  // Edición exitosa
-        }
-        System.out.println("Pedido no encontrado");
-        return false;  // Pedido no encontrado
-    }
-
-      // Método para eliminar un pedido por ID
-        public boolean eliminarPedido(int id) {
-        Iterator<Pedido> iterador = pedidos.iterator();
-        while (iterador.hasNext()) {
-            Pedido pedido = iterador.next();
-            if (pedido.getId() == id) {
-                iterador.remove();
-                return true;
-            }
-        }
-        return false;
-    }
-
-     // Método para buscar un pedido por ID
-        public Pedido buscarPedido(int id) {
-        for (Pedido pedido : pedidos) {
-            if (pedido.getId() == id) {
-                return pedido;
-            }
-        }
-        System.out.println("Pedido no encontrado");
-        return null; // Si no se encuentra el pedido, devolver null
-    }
-
-    // Método para contar el número total de pedidos
+    // Método para contar el número de pedidos en la cola
     public int contarPedidos() {
-        return pedidos.size();
+        return size;
+    }
+    public List<Pedido> getPedidos() {
+        return Arrays.asList(colaPedidos).subList(0, size);  // Convertir array a lista hasta el tamaño real
     }
 }
