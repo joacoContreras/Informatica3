@@ -76,6 +76,29 @@ class LinkedList {
         System.out.println("null");
     }
 
+    public int contarElementos(){
+        if (isEmpty()) {
+            return 0;
+        }
+        Nodo temp = head;
+        int cont = 0;
+        while (temp != null) {
+            cont++;
+            temp = temp.next;
+        }
+        return cont;
+    }
+
+    public Nodo obtenerElemento(int i) {
+        Nodo temp = head;
+        int cont = i;
+        while (cont != 0) {
+            temp = temp.next;
+            cont--;
+        }
+        return temp;
+    }
+
     public void priorizar(int target) {
         if (isEmpty()) {
             System.out.println("La lista esta vacia");

@@ -1,34 +1,57 @@
 public class QuickSort {
     public static void main(String[] args) {
-        int[] array = {1, 2, 66, 44, 7, 534, 90, 44};
-        Ordenar(array, 0, array.length - 1);
-        for (int i : array) {
-            System.out.print(i + " ");
-        }
+        LinkedList lista = new LinkedList();
+        lista.insertarFinal(4);
+        lista.insertarFinal(99);
+        lista.insertarFinal(41);
+        lista.insertarFinal(1);
+        lista.insertarFinal(3);
+        System.out.println("Lista sin ordenar");
+        lista.imprimirLista();
+        Ordenar(lista, 0, lista.contarElementos()-1);
+        System.out.println("Lista ordenada por quickSort:");
+        lista.imprimirLista();
+        System.out.println("Lista ordenada por ShellSort:");
+        ShellSort(lista);
+        lista.imprimirLista();
     }
 
-    private static void Ordenar(int[] arr, int low, int high) {
+    private static void Ordenar(LinkedList lista, int low, int high) {
         if (low < high) {
-            int pi = partition(arr, low, high); // Encuentra el indice de la particion
-            Ordenar(arr, low, pi - 1);
-            Ordenar(arr, pi + 1, high);
+            int pi = partition(lista, low, high); // Encuentra el indice de la particion
+            Ordenar(lista, low, pi - 1);
+            Ordenar(lista, pi + 1, high);
         }
     }
 
-    public static int partition(int[] array, int low, int high) {
-        int pivot = array[high]; // Tomamos ultimo elemento como pivote
+    public static int partition(LinkedList lista, int low, int high) {
+        Nodo pivot = lista.obtenerElemento(high); // Tomamos ultimo elemento como pivote
+        int dataPivot = pivot.data;
         int i = low; // Indice del menor elemento
         for (int j = low; j < high; j++) {
-            if (array[j] <= pivot) {
-                int temp = array[i];
-                array[i] = array[j];
-                array[j] = temp;
+            if (lista.obtenerElemento(j).data <= dataPivot) {
+                int temp = lista.obtenerElemento(i).data;
+                lista.obtenerElemento(i).data = lista.obtenerElemento(j).data;
+                lista.obtenerElemento(j).data = temp;
                 i++;
             }
         }
-        int temp = array[i];
-        array[i] = array[high];
-        array[high] = temp;
+        int temp =lista.obtenerElemento(i).data;
+        lista.obtenerElemento(i).data = lista.obtenerElemento(high).data;
+        lista.obtenerElemento(high).data = temp;
         return i;
+    }
+
+    private static void ShellSort(LinkedList lista){
+        int n = lista.contarElementos() - 1;
+        for (int intervalo = n/2; intervalo > 0; intervalo /= 2) {
+            Nodo tempNodo = lista.obtenerElemento(intervalo);
+            int temp = tempNodo.data;
+            int j;
+            for (j = intervalo; j >= intervalo && lista.obtenerElemento(j-intervalo).data < temp; j-= intervalo) {
+                lista.obtenerElemento(j).data = lista.obtenerElemento(j - intervalo).data;
+            }
+            lista.obtenerElemento(j).data = temp;
+        }
     }
 }
