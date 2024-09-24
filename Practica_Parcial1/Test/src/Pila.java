@@ -1,22 +1,23 @@
-public class Pila {
-    private int[] stack;
-    private int top;
-    private int capacity;
+class Nodo{
+    int data;
+    Nodo next;
 
-    public Pila(int size) {
-        stack = new int[size];
-        top = -1;
-        capacity = size;
+    public Nodo(int data){
+        this.data = data;
+        this.next = null;
+    }
+}
+class Pila {
+    private Nodo top;
+
+    public Pila() {
+        top = null;
     }
 
     public void push(int value) {
-        if (isFull()) {
-            System.out.println("La pila esta llena.");
-            return;
-        }
-        else {
-            stack[++top] = value;
-        }
+        Nodo nuevoNodo = new Nodo(value);
+        nuevoNodo.next = top;
+        top = nuevoNodo;
     }
 
     public int pop() {
@@ -24,25 +25,12 @@ public class Pila {
             System.out.println("La pila esta vacia");
             return -1;
         }
-        return stack[top--];
+        int valorEliminado = top.data;
+        top = top.next;
+        return valorEliminado;
     }
-
-    public boolean isFull() {
-        return top == capacity - 1;
-    }
-
     public boolean isEmpty() {
-        return top == -1;
-    }
-
-    public int peek() {
-        if (isEmpty()) {
-            System.out.println("La pila esta vacia");
-            return -1;
-        }
-        else {
-            return stack[top];
-        }
+        return top == null;
     }
 
     public void imprimirPila() {
@@ -51,9 +39,27 @@ public class Pila {
             return;
         }
         System.out.println("Elementos de la pila:");
-        for (int i = 0; i <= top; i++) {
-            System.out.println(stack[i] +" ");
+        Nodo temp = top;
+        System.out.println("top -> ");
+        while (temp != null) {
+            System.out.print(temp.data + " -> ");
+            temp = temp.next;
+            
         }
-        System.out.println();
+        System.out.println("NULL");
+    }
+
+    public int contarElementos() {
+        int contador = 0;
+        if (isEmpty()) {
+            System.out.println("Pila vacia");
+            return contador;
+        }
+        Nodo temp = top;
+        while (temp != null) {
+            contador++;
+            temp = temp.next;
+        }
+        return contador;
     }
 }
