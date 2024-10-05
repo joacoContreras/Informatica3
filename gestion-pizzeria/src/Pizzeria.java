@@ -32,8 +32,16 @@ public class Pizzeria {
         }
     }
 
+    public void re_enqueue(){
+        Pedido pedido = pedidosPreparados.peek(); // retorna stack top
+        if (pedido != null) {
+            enqueue(pedido);
+            System.out.println("Pedido vuelto a encolar...");
+        }
+    }
+
     public void verPedidoPreparado() {
-        Pedido pedido = pedidosPreparados.peek();
+        Pedido pedido = pedidosPreparados.peek(); // retorna stack top
         if (pedido != null) {
             System.out.println("Pedido procesado y entregado: " + pedido);
         }

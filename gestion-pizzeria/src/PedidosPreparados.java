@@ -40,6 +40,10 @@ public class PedidosPreparados {
         return top == -1;
     }
 
+    public void makeEmpty() {
+        top = -1;
+    }
+
     public int contarPedidosPreparados() {
         return top + 1;
     }
