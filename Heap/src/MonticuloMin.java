@@ -8,7 +8,7 @@ public class MonticuloMin {
     }
 
     public int primerElemento(){
-        return heap.get(1);
+        return heap.get(0);
     }
 
     // Obtener el índice del padre
@@ -38,7 +38,7 @@ public class MonticuloMin {
         }
     }
 
-    // Eliminar el elemento máximo (la raíz)
+    // Eliminar el elemento minimo (la raíz)
     public int eliminarMin() {
         if (heap.size() == 0) {
             throw new IllegalStateException("El montículo está vacío");
