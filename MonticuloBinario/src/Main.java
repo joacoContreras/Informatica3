@@ -19,8 +19,8 @@ public class Main {
             System.out.println("2. Imprimir Heap min");
             System.out.println("3. Ingresar valor a Heap Max");
             System.out.println("4. Ingresar valor a Heap Min");
-            System.out.println("5. Eliminar valor de Heap Max");
-            System.out.println("6. Eliminar valor de Heap Min");
+            System.out.println("5. Extraer valor de Heap Max (Mayor prioridad)");
+            System.out.println("6. Extraer valor de Heap Min (Mayor prioridad)");
             
             System.out.println("Tu opcion: ");
             Scanner input = new Scanner(System.in);
@@ -37,7 +37,22 @@ public class Main {
                 case 2:
                     heapmn.mostrarMonticulo();
                     break;
-
+                case 3:
+                    System.out.print("Ingresar valor entero al monticulo Max: ");
+                    int num = input.nextInt();
+                    input.nextLine();
+                    heapmx.insertar(num);
+                    System.out.println("Heap actualizado: ");
+                    heapmx.mostrarMonticulo();
+                    break;
+                case 4: 
+                    System.out.print("Ingresar valor entero al monticulo Min: ");
+                    int num1 = input.nextInt();
+                    input.nextLine();
+                    heapmx.insertar(num1);
+                    System.out.println("Heap actualizado: ");
+                    heapmn.mostrarMonticulo();
+                    break;
                 case 5:
                     heapmx.eliminarMax();
                     System.out.println("Heap actualizado: ");
