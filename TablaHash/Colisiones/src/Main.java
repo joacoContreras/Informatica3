@@ -1,4 +1,3 @@
-// Ejemplo de uso:
 public class Main {
     public static void main(String[] args) {
         TablaHashLineal tablaHash = new TablaHashLineal(10);
@@ -10,5 +9,6 @@ public class Main {
 
         // Mostrar la tabla hash
         tablaHash.mostrarTabla();
+    }
     }
 }
