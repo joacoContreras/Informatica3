@@ -10,5 +10,5 @@ public class Main {
         // Mostrar la tabla hash
         tablaHash.mostrarTabla();
     }
-    }
 }
+
