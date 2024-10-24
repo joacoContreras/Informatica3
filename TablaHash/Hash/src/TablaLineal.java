@@ -1,9 +1,9 @@
-class TablaHashLineal {
+class TablaLineal {
     private int[] tabla;
     private int size;
 
     // Constructor: inicializa la tabla con un tamaño específico
-    public TablaHashLineal(int size) {
+    public TablaLineal(int size) {
         this.size = size;
         this.tabla = new int[size];
         // Inicializar todas las posiciones como -1, para indicar que están vacías
@@ -37,4 +37,3 @@ class TablaHashLineal {
         }
     }
 }
-
