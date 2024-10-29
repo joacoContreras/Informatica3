@@ -31,11 +31,11 @@ public class MonticuloMin {
 
     // Insertar un nuevo valor en el montículo
     public void insertar(int valor) {
-        heap.add(valor);  // Añadir el valor al final del arreglo
-        int i = heap.size() - 1;  // Último índice
+        heap.add(valor);  // El valor se añade al final de heap
+        int i = heap.size() - 1;
 
         // Reorganizar (Heapify up)
-        while (i > 0 && heap.get(padre(i)) > heap.get(i)) {
+        while (i > 0 && heap.get(padre(i)) > heap.get(i)) { // Si el nuevo valor es menor que su padre, se intercambia con el padre.
             intercambiar(i, padre(i));
             i = padre(i);  // Subir al nodo padre
         }
