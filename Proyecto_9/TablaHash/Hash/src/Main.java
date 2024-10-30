@@ -19,26 +19,19 @@ public class Main {
                     sistemaActivo = false;
                     break;
                 case 1: 
+                    TablaLineal.main();
                     break;
-
+                case 2:
+                    TablaHashCuadratica.main();
+                    break;
                 case 3:
                     TablaChaining.main();
-                    
-
                     break;
-            
                 default:
                     System.out.println("Error...");
                     break;
             }
         } while (sistemaActivo);
     
-    }
-
-    public static int solicitarN(){
-        Scanner consola = new Scanner(System.in);
-        int n = consola.nextInt();
-        consola.nextLine();
-        return n;
     }
 }
