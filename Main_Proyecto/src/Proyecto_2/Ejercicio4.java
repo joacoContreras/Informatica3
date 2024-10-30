@@ -1,4 +1,7 @@
-package Proyecto2;
+package Proyecto_2;
+
+import java.util.Scanner;
+
 public class Ejercicio4 extends Ejercicio1 {
 
     public static void measureTime(Runnable sortMethod, String methodName, int length) {
@@ -8,22 +11,37 @@ public class Ejercicio4 extends Ejercicio1 {
         System.out.println(methodName + " (" + length + " elementos): " + (endTime - startTime) + " ns");
     }
 
-    public static void main(String[] args) {
-        Integer[] array100 = Ejercicio3.generateRandomArray(100);
-        Integer[] array1000 = Ejercicio3.generateRandomArray(1000);
-        Integer[] array10000 = Ejercicio3.generateRandomArray(10000);
-
+    public static void ejecutar() {
+        Scanner scanner = new Scanner(System.in);
         
-        measureTime(() -> insertionSort(array100.clone()), "Inserción", 100);
-        measureTime(() -> insertionSort(array1000.clone()), "Inserción", 1000);
-        measureTime(() -> insertionSort(array10000.clone()), "Inserción", 10000);
+        System.out.println("Ejecutando Ejercicio 4...");
+        
+        System.out.print("Ingrese el tamaño del primer array: ");
+        int size1 = scanner.nextInt();
+        scanner.nextLine();
 
-        measureTime(() -> shellSort(array100.clone()), "Shellsort", 100);
-        measureTime(() -> shellSort(array1000.clone()), "Shellsort", 1000);
-        measureTime(() -> shellSort(array10000.clone()), "Shellsort", 10000);
+        System.out.print("Ingrese el tamaño del segundo array: ");
+        int size2 = scanner.nextInt();
+        scanner.nextLine();
 
-        measureTime(() -> quickSort(array100.clone(), 0, array100.length - 1), "Quicksort", 100);
-        measureTime(() -> quickSort(array1000.clone(), 0, array1000.length - 1), "Quicksort", 1000);
-        measureTime(() -> quickSort(array10000.clone(), 0, array10000.length - 1), "Quicksort", 10000);
+        System.out.print("Ingrese el tamaño del tercer array: ");
+        int size3 = scanner.nextInt();
+        scanner.nextLine();
+
+        Integer[] array1 = Ejercicio3.generateRandomArray(size1);
+        Integer[] array2 = Ejercicio3.generateRandomArray(size2);
+        Integer[] array3 = Ejercicio3.generateRandomArray(size3);
+
+        measureTime(() -> insertionSort(array1.clone()), "Inserción", size1);
+        measureTime(() -> insertionSort(array2.clone()), "Inserción", size2);
+        measureTime(() -> insertionSort(array3.clone()), "Inserción", size3);
+
+        measureTime(() -> shellSort(array1.clone()), "Shellsort", size1);
+        measureTime(() -> shellSort(array2.clone()), "Shellsort", size2);
+        measureTime(() -> shellSort(array3.clone()), "Shellsort", size3);
+
+        measureTime(() -> quickSort(array1.clone(), 0, array1.length - 1), "Quicksort", size1);
+        measureTime(() -> quickSort(array2.clone(), 0, array2.length - 1), "Quicksort", size2);
+        measureTime(() -> quickSort(array3.clone(), 0, array3.length - 1), "Quicksort", size3);  
     }
 }

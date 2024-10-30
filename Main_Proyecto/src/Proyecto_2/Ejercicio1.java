@@ -1,4 +1,5 @@
-package Proyecto2;
+package Proyecto_2;
+
 import java.util.Arrays;
 
 public class Ejercicio1 {
@@ -60,10 +61,9 @@ public class Ejercicio1 {
         System.out.println(Arrays.toString(array));
     }
 
-    public static void main(String[] args) {
-        
-
-   
+    
+        public static void ejecutar() {
+        System.out.println("Ejecutando Ejercicio 1...");
         Integer[] intArray = {3, 5, 1, 4, 2};
         System.out.println("Array de enteros original:");
         mostrarArray(intArray);
@@ -80,7 +80,6 @@ public class Ejercicio1 {
         System.out.println("Array de enteros ordenado con Quick Sort:");
         mostrarArray(intArray);
 
-       
         Double[] doubleArray = {3.5, 1.2, 4.8, 2.0, 5.1};
         System.out.println("\nArray de doubles original:");
         mostrarArray(doubleArray);
@@ -97,7 +96,6 @@ public class Ejercicio1 {
         System.out.println("Array de doubles ordenado con Quick Sort:");
         mostrarArray(doubleArray);
 
-       
         String[] stringArray = {"apple", "orange", "banana", "grape", "cherry"};
         System.out.println("\nArray de strings original:");
         mostrarArray(stringArray);
