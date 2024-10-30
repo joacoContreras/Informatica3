@@ -40,14 +40,19 @@ public class Menu {
                     break;
                 case 4:
                     Proyecto_4.Main4.main(args);
+                    break;
                 case 5:
                     Proyecto_5y6.Main5.main(args);
+                    break;
                 case 6:
                     Proyecto_7.Main7.main(args);
+                    break;
                 case 7:
                     Proyecto_8.Main8.main(args);
-                case 9:
+                    break;
+                case 8:
                     Proyecto_9.Main9.main(args);
+                    break;
                 case 0:
                     activo = false;
                     System.out.println("Saliendo del programa...");
