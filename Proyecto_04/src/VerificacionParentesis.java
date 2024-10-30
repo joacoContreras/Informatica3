@@ -1,14 +1,13 @@
 import java.util.Stack;
 import java.util.Scanner;
 
-public class App {
-    public static void main(String[] args) {
+public class VerificacionParentesis {
+    public static void main() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Ingrese la expresión matemática: ");
         String expresion = scanner.nextLine();
         
         System.out.println(verificarBalance(expresion));
-        scanner.close();
     }
 
     public static String verificarBalance(String expresion) {

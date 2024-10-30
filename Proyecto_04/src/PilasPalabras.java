@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pila<T> {
+public class PilasPalabras<T> {
     // Lista para almacenar los elementos de la pila
     private List<T> elementos;
 
     // Constructor
-    public Pila() {
+    public PilasPalabras() {
         elementos = new ArrayList<>();
     }
 

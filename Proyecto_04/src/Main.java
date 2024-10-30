@@ -8,9 +8,9 @@ public class Main {
             System.out.println("------------------------");
             System.out.println("0. Salir");
             System.out.println("1. Implementacion de Pila con Lista");
-            System.out.println("2. ");
-            System.out.println("3. ");
-            System.out.println("4. ");
+            System.out.println("2. Pila de Palabras");
+            System.out.println("3. Verificación de Paréntesis");
+            System.out.println("4. Conversión de Decimal a Binario");
             System.out.println("5. Implementacion de una Cola con Lista");
             System.out.println("6. Cola de Numeros");
             System.out.println("7. Ordenamiento de Cola");
@@ -26,14 +26,47 @@ public class Main {
                 break;
 
                 case 1:
+                    Pila<Integer> pila = new Pila<>();
+                    boolean pilaOn = true;
+                    do {
+                        System.out.println("\nPila con Lista");
+                        System.out.println("...............");
+                        System.out.println("0. Salir");
+                        System.out.println("1. Push");
+                        System.out.println("2. Pop");
+                        System.out.println("3. Top");
+                        System.out.print("Tu opcion: ");
+                        int opcion1 = consola.nextInt();
+                        consola.nextLine();
+                        switch (opcion1) {
+                            case 0:
+                                pilaOn = false;
+                                break;
+                            case 1:
+                                    pila.push(IngresarN());
+                                break;
+                            case 2:
+                                    System.out.println("Elemento eliminado (pop): " + pila.pop());
+                                break;
+                            case 3:
+                                    System.out.println("Elemento en la cima (top): " + pila.top());
+                                break;
+                            default:
+                                    System.out.println("Error....");
+                                break;
+                        }
+                    } while (pilaOn);
                 break;
 
-                case 2:                    
+                case 2:
+                    MainPilasPalabras.main();                  
                 break;
                 
                 case 3:
+                    VerificacionParentesis.main();
                 break;
                 case 4:
+                    DecimalABinario.main();
                 break;
 
                 case 5:

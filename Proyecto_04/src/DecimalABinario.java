@@ -2,7 +2,7 @@ import java.util.Stack;
 import java.util.Scanner;
 
 public class DecimalABinario {
-    public static void main(String[] args) {
+    public static void main() {
         Scanner scanner = new Scanner(System.in);
         
         System.out.print("Ingrese un número decimal: ");
@@ -10,8 +10,6 @@ public class DecimalABinario {
         
         String binario = convertirABinario(numero);
         System.out.println("El número en binario es: " + binario);
-        
-        scanner.close();
     }
 
     public static String convertirABinario(int numero) {

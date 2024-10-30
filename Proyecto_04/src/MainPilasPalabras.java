@@ -1,13 +1,13 @@
 import java.util.Scanner;
 
-public class Main {
-    public static void main(String[] args) {
+public class MainPilasPalabras {
+    public static void main() {
         // Pruebas de la pila
-        Pila<String> pila = new Pila<>();
+        PilasPalabras<String> pila = new PilasPalabras();
         boolean sistemaActivo = true;
         Scanner consola = new Scanner(System.in);
         do {
-            System.out.println("Bienvenido al sistema Pila de Palabras");
+            System.out.println("\nBienvenido al sistema Pila de Palabras");
             System.out.println("---------------------------------------");
             System.out.println("0. Salir");
             System.out.println("1. Ingresar Palabra");
@@ -36,8 +36,6 @@ public class Main {
                     break;
             }
         } while (sistemaActivo);
-
-        consola.close(); 
     }
 
 }
