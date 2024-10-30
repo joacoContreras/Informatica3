@@ -1,22 +1,11 @@
 import java.util.Scanner;
-import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
 
-        Random random = new Random();
         ArbolBinario arbol = new ArbolBinario();
         Scanner consola = new Scanner(System.in);
         boolean sistemaActivo = true;
-
-        // Generar un número entero aleatorio entre un rango específico
-        int min = 0;
-        int max = 25;
-
-        for (int i = 10; i >= 0; i--) {
-            int numeroAleatorioEntreRango = random.nextInt(max - min + 1) + min;
-            arbol.agregar(numeroAleatorioEntreRango);
-        }
 
         do {
             System.out.println("\nBienvenido al sistema Arbol-Binario");
