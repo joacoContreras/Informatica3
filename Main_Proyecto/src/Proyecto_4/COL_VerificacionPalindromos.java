@@ -8,7 +8,8 @@ public class COL_VerificacionPalindromos {
         Queue<Character> cola = new LinkedList<>();
         Stack<Character> pila = new Stack<>();
 
-        // Limpiar el texto, ignorando espacios y signos de puntuación
+        // Elimina todos los caracteres que no sean letras o números del texto original y convierte todos los caracteres
+        // a minúsculas para realizar una comparación insensible a mayúsculas y minúsculas.
         String textoLimpio = texto.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
 
         // Agregar caracteres a la cola y la pila
